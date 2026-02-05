@@ -1,5 +1,5 @@
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
-// Иконки (если нет, удали пока или установи npm install @mui/icons-material)
+
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';

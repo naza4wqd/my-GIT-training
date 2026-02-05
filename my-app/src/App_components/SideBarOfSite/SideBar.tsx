@@ -4,15 +4,15 @@ import TopSideBar from "./SideBar_components/TopSideBar"
 import ListSideBar from "./SideBar_components/ListSideBar"
 import BottomSideBar from "./SideBar_components/BottomSideBar"
 
-import { drawerWidth } from "../../App"
+import { DRAWER_WIDTH } from "../../constants"
 
 function SideBar() {
     return <Drawer
         sx={{
-            width: drawerWidth,
+            width: DRAWER_WIDTH,
             flexShrink: 0,
             '& .MuiDrawer-paper': {
-                width: drawerWidth,
+                width: DRAWER_WIDTH,
                 boxSizing: 'border-box',
                 bgcolor: '#0a1929',
                 color: 'white',

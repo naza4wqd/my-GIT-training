@@ -1,6 +1,5 @@
 import { Avatar, Box, Typography } from "@mui/material"
 
-
 function BottomSideBar() {
     return <Box sx={{ position: 'absolute', bottom: 0, p: 2, display: 'flex', alignItems: 'center' }}>
         <Avatar alt="User" src="/static/images/avatar/1.jpg" />
