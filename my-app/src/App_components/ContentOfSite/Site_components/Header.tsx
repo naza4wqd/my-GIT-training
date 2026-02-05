@@ -1,13 +1,10 @@
 import { AppBar, Toolbar, Typography } from "@mui/material"
 
-const drawerWidth = 240;
-
-function HeaderOfSite() {
+function Header() {
     return <AppBar
-        position="fixed"
+        position="sticky"
         sx={{
-            width: `calc(100% - ${drawerWidth}px)`, // Ширина = 100% минус ширина меню
-            ml: `${drawerWidth}px`, // Отступ слева на ширину меню
+            width: `100%`,
             bgcolor: 'white', // Цвет фона шапки (как на макете)
             color: 'text.primary', // Цвет текста черный
             boxShadow: 1 // Легкая тень
@@ -21,4 +18,4 @@ function HeaderOfSite() {
     </AppBar>
 }
 
-export default HeaderOfSite
+export default Header
