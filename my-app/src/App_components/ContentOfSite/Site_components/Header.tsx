@@ -5,9 +5,9 @@ function Header() {
         position="sticky"
         sx={{
             width: `100%`,
-            bgcolor: 'white', // Цвет фона шапки (как на макете)
-            color: 'text.primary', // Цвет текста черный
-            boxShadow: 1 // Легкая тень
+            bgcolor: 'white',
+            color: 'text.primary',
+            boxShadow: 1
         }}
     >
         <Toolbar>

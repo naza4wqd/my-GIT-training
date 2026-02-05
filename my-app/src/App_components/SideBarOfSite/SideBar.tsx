@@ -6,7 +6,12 @@ import BottomSideBar from "./SideBar_components/BottomSideBar"
 
 import { DRAWER_WIDTH } from "../../constants"
 
-function SideBar() {
+interface SideBarProps {
+    activeTab: string;
+    setActiveTab: (tab: string) => void
+}
+
+function SideBar(prop: SideBarProps) {
     return <Drawer
         sx={{
             width: DRAWER_WIDTH,
@@ -21,13 +26,13 @@ function SideBar() {
         variant="permanent"
         anchor="left"
     >
-        {/* Логотип или заголовок меню */}
         <TopSideBar />
 
-        {/* Список кнопок меню */}
-        <ListSideBar />
+        <ListSideBar
+            activeTab={prop.activeTab}
+            setActiveTab={prop.setActiveTab}
+        />
 
-        {/* Аватарка внизу меню */}
         <BottomSideBar />
 
     </Drawer>

@@ -5,17 +5,35 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-function ListSideBar() {
-    return <List>
-        {['Dashboard', 'Transactions', 'Wallet', 'Settings'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-                <ListItemButton>
-                    <ListItemIcon sx={{ color: 'white' }}>
-                        {index === 0 ? <DashboardIcon /> :
-                            index === 1 ? <AttachMoneyIcon /> :
-                                index === 2 ? <AccountBalanceWalletIcon /> : <SettingsIcon />}
+interface SideBarProps {
+    activeTab: string;
+    setActiveTab: (tab: string) => void
+}
+
+function ListSideBar(prop: SideBarProps) {
+
+    const menuItems = [
+        { text: 'Dashboard', icon: <DashboardIcon /> },
+        { text: 'Transactions', icon: <AttachMoneyIcon /> },
+        { text: 'Wallet', icon: <AccountBalanceWalletIcon /> },
+        { text: 'Settings', icon: <SettingsIcon /> }
+    ]
+
+    return <List sx={{ p: 0 }}>
+        {menuItems.map(item => (
+            <ListItem key={item.text} disablePadding>
+                <ListItemButton
+                    selected={prop.activeTab === item.text}
+                    onClick={() => prop.setActiveTab(item.text)}
+                    sx={{
+                        '&.Mui-selected': { bgcolor: 'rgba(255, 255, 255, 0.16)' },
+                        '&.Mui-selected:hover': { bgcolor: 'rgba(255, 255, 255, 0.24)' },
+                    }}
+                >
+                    <ListItemIcon sx={{ color: `white` }}>
+                        {item.icon}
                     </ListItemIcon>
-                    <ListItemText primary={text} />
+                    <ListItemText>{item.text}</ListItemText>
                 </ListItemButton>
             </ListItem>
         ))}

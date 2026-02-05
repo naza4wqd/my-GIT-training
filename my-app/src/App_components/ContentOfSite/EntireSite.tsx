@@ -4,7 +4,11 @@ import Header from "./Site_components/Header"
 import Main from "./Site_components/Main"
 import { DRAWER_WIDTH } from "../../constants"
 
-function EntireSite() {
+interface activeTabProp {
+    activeTab: string
+}
+
+function EntireSite(prop: activeTabProp) {
     return <Box sx={{
         flexGrow: 1,
         display: `flex`,
@@ -13,7 +17,9 @@ function EntireSite() {
         width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` }
     }}>
         < Header />
-        < Main />
+        < Main
+            activeTab={prop.activeTab}
+        />
     </Box>
 }
 

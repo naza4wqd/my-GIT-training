@@ -1,20 +1,27 @@
 import { Box } from '@mui/material';
 
+import { useState } from 'react';
+
 import SideBar from './App_components/SideBarOfSite/SideBar';
 import EntireSite from './App_components/ContentOfSite/EntireSite';
 
+
 function App() {
+  const [activeTab, setActiveTab] = useState("Dashboard");
+
   return (
-    // 1. Box sx={{ display: 'flex' }} — это главный контейнер.
-    // Он работает как flex-row. Слева меню, справа контент.
     <Box sx={{
       display: 'flex'
     }}>
 
-      {/* 3. Drawer — Боковое меню */}
-      <SideBar />
+      <SideBar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
 
-      <EntireSite />
+      <EntireSite
+        activeTab={activeTab}
+      />
 
     </Box>
   );
