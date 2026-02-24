@@ -1,4 +1,4 @@
-import { Drawer } from "@mui/material"
+import { Drawer, Box } from "@mui/material"
 
 import TopSideBar from "./SideBar_components/TopSideBar"
 import ListSideBar from "./SideBar_components/ListSideBar"
@@ -19,22 +19,24 @@ function SideBar(prop: SideBarProps) {
             '& .MuiDrawer-paper': {
                 width: DRAWER_WIDTH,
                 boxSizing: 'border-box',
-                bgcolor: '#0a1929',
-                color: 'white',
+                bgcolor: '#1c2536',
+                color: '#9da4ae',
+                borderRight: 'none'
             },
         }}
         variant="permanent"
         anchor="left"
     >
-        <TopSideBar />
+        <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <TopSideBar />
 
-        <ListSideBar
-            activeTab={prop.activeTab}
-            setActiveTab={prop.setActiveTab}
-        />
+            <ListSideBar
+                activeTab={prop.activeTab}
+                setActiveTab={prop.setActiveTab}
+            />
 
-        <BottomSideBar />
-
+            <BottomSideBar />
+        </Box>
     </Drawer>
 }
 
