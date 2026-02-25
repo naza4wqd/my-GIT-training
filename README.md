@@ -13,6 +13,10 @@ This project goes beyond a static UI layer—it demonstrates a robust, productio
 
 ---
 
+<img width="1890" height="915" alt="image" src="https://github.com/user-attachments/assets/95d1fed4-28dd-43ab-86ae-024e6669bfcd" />
+
+---
+
 ## ✨ Features & Capabilities
 
 ### 1. 🌍 Dynamic Global State (React Context API)
