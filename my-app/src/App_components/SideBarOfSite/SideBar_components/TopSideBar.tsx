@@ -19,7 +19,7 @@ function TopSideBar() {
                 fontSize: '1.2rem',
                 letterSpacing: '-0.5px'
             }}>
-                MUI Finance Tracker
+                Finance Tracker
             </Typography>
         </Box>
     </Toolbar>

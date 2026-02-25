@@ -1,11 +1,26 @@
 import { Card, CardContent, Typography, Box, Button, TextField, MenuItem } from "@mui/material";
-import { dashBoardData } from "../../../../data/dashBoardData";
+import { useState } from 'react';
+import { useFinance } from "../../../../context/FinanceContext";
 
 export default function QuickTransfer() {
+    const { contacts, addTransaction } = useFinance();
+    const [selectedContact, setSelectedContact] = useState(contacts[0]);
+    const [amount, setAmount] = useState('');
+
+    const handleSend = () => {
+        if (!amount) return;
+        addTransaction({
+            name: `Transfer to ${selectedContact}`,
+            amount: Math.abs(parseFloat(amount)),
+            type: 'Expense'
+        });
+        setAmount('');
+    };
+
     return (
-        <Card sx={{ borderRadius: 2, boxShadow: 'none', border: '1px solid #e0e0e0', mb: 3 }}>
+        <Card sx={{ borderRadius: 2, boxShadow: 'none', mb: 3 }}>
             <CardContent sx={{ p: 3, pb: '24px !important' }}>
-                <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a1a', letterSpacing: '-0.5px', mb: 2 }}>
+                <Typography variant="h6" sx={{ fontWeight: 600, color: 'text.primary', letterSpacing: '-0.5px', mb: 2 }}>
                     Quick Transfer
                 </Typography>
 
@@ -13,11 +28,11 @@ export default function QuickTransfer() {
                     <TextField
                         select
                         label="To"
-                        defaultValue={dashBoardData.quickTransfer.contacts[0]}
+                        value={selectedContact}
+                        onChange={(e) => setSelectedContact(e.target.value)}
                         size="small"
-                        sx={{ bgcolor: 'white' }}
                     >
-                        {dashBoardData.quickTransfer.contacts.map((contact: string) => (
+                        {contacts.map((contact: string) => (
                             <MenuItem key={contact} value={contact}>
                                 {contact}
                             </MenuItem>
@@ -27,8 +42,10 @@ export default function QuickTransfer() {
                     <TextField
                         label="Amount"
                         placeholder="0.00"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
                         size="small"
-                        sx={{ bgcolor: 'white' }}
+                        type="number"
                     />
 
                     <Button
@@ -41,6 +58,7 @@ export default function QuickTransfer() {
                             fontWeight: 500,
                             py: 1
                         }}
+                        onClick={handleSend}
                     >
                         Send
                     </Button>

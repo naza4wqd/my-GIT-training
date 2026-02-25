@@ -2,15 +2,17 @@ import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { dashBoardData } from "../../../../data/dashBoardData";
+import { useFinance } from "../../../../context/FinanceContext";
 
 export default function FinanceOverview() {
+    const { monthlyChartData } = useFinance();
+
     return (
-        <Card sx={{ borderRadius: 2, boxShadow: 'none', border: '1px solid #e0e0e0', height: '100%' }}>
+        <Card sx={{ borderRadius: 2, boxShadow: 'none', height: '100%' }}>
             <CardContent sx={{ p: 3, '&:last-child': { pb: 3 } }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 3 }}>
                     <Box>
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a1a', letterSpacing: '-0.5px' }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: 'text.primary', letterSpacing: '-0.5px' }}>
                             Finance Overview
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -20,7 +22,7 @@ export default function FinanceOverview() {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <Box sx={{
                             display: 'flex', alignItems: 'center', gap: 0.5,
-                            border: '1px solid #e0e0e0', borderRadius: 1.5, px: 1.5, py: 0.5,
+                            border: '1px solid', borderColor: 'divider', borderRadius: 1.5, px: 1.5, py: 0.5,
                             color: '#1976d2', fontWeight: 500, fontSize: '0.85rem'
                         }}>
                             <ShowChartIcon sx={{ fontSize: 16 }} />
@@ -35,7 +37,7 @@ export default function FinanceOverview() {
                 <Box sx={{ width: '100%', height: 300 }}>
                     <ResponsiveContainer width="100%" height="100%">
                         <AreaChart
-                            data={dashBoardData.chartData}
+                            data={monthlyChartData}
                             margin={{ top: 10, right: 0, left: -20, bottom: 0 }}
                         >
                             <defs>

@@ -1,23 +1,23 @@
 import { AppBar, Toolbar, Box, InputBase, IconButton, Badge, Avatar, Switch } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import { useThemeContext } from "../../../context/ThemeContext";
 
 function Header() {
+    const { mode, toggleTheme } = useThemeContext();
     return <AppBar
         position="sticky"
         sx={{
             width: `100%`,
-            bgcolor: 'white',
             color: 'text.primary',
             boxShadow: 'none',
-            borderBottom: '1px solid #e0e0e0'
         }}
     >
         <Toolbar sx={{ justifyContent: 'space-between' }}>
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
-                bgcolor: '#f1f3f4',
+                bgcolor: mode === 'light' ? '#f1f3f4' : 'rgba(255, 255, 255, 0.05)',
                 borderRadius: 2,
                 px: 2,
                 py: 0.5,
@@ -36,15 +36,15 @@ function Header() {
                         <NotificationsNoneIcon />
                     </Badge>
                 </IconButton>
-                <Switch defaultChecked color="default" sx={{
+                <Switch checked={mode === 'dark'} onChange={toggleTheme} color="default" sx={{
                     '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: '#424242',
+                        color: mode === 'light' ? '#424242' : '#90caf9',
                     },
                     '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: '#424242',
+                        backgroundColor: mode === 'light' ? '#424242' : '#90caf9',
                     },
                 }} />
-                <Avatar sx={{ width: 32, height: 32 }} src="https://i.pravatar.cc/150?img=11" />
+                <Avatar sx={{ width: 32, height: 32 }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj2TtnsUygscoXPw0bqtTOHC2a7DwmhC7NBg&s" />
             </Box>
         </Toolbar>
     </AppBar>

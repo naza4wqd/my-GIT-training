@@ -2,21 +2,23 @@ import { Box, Grid as Grid, Typography } from "@mui/material";
 import StatCard from "./Main_components/StatCard"
 import FinanceOverview from "./Main_components/FinanceOverview"
 import QuickTransfer from "./Main_components/QuickTransfer"
-import Goals from "./Main_components/Goals"
 import RecentTransactionsList from "./Main_components/RecentTransactionsList"
 import FloatingAddButton from "./Main_components/FloatingAddButton"
+import ExpenseCategories from "./Main_components/ExpenseCategories"
+import SubscriptionManager from "./Main_components/SubscriptionManager"
 import CallMadeIcon from '@mui/icons-material/CallMade';
-import { dashBoardData } from "../../../data/dashBoardData";
+import { useFinance } from "../../../context/FinanceContext";
 
 interface activeTabProp {
     activeTab: string
 }
 
 function Main(prop: activeTabProp) {
+    const { totalBalance, totalIncome, totalExpenses } = useFinance();
     const formatMoney = (val: number) => `$${val.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
     return (
-        <Box component="main" sx={{ flexGrow: 1, bgcolor: '#f5f6f8', p: 3, position: 'relative' }}>
+        <Box component="main" sx={{ flexGrow: 1, p: 3, position: 'relative' }}>
 
             {prop.activeTab === 'Dashboard' ? <Box>
                 {/* Top Row: Stat Cards */}
@@ -24,20 +26,20 @@ function Main(prop: activeTabProp) {
                     <Grid size={{ xs: 12, md: 4 }}>
                         <StatCard
                             title="Total Balance"
-                            amount={formatMoney(dashBoardData.stats.totalBalance)}
+                            amount={formatMoney(totalBalance)}
                             icon={<CallMadeIcon sx={{ transform: 'rotate(45deg)' }} />}
                         />
                     </Grid>
                     <Grid size={{ xs: 12, md: 4 }}>
                         <StatCard
                             title="Income"
-                            amount={formatMoney(dashBoardData.stats.income)}
+                            amount={formatMoney(totalIncome)}
                         />
                     </Grid>
                     <Grid size={{ xs: 12, md: 4 }}>
                         <StatCard
                             title="Expenses"
-                            amount={formatMoney(dashBoardData.stats.expenses)}
+                            amount={formatMoney(totalExpenses)}
                         />
                     </Grid>
                 </Grid>
@@ -49,15 +51,17 @@ function Main(prop: activeTabProp) {
                         <Box sx={{ mb: 3 }}>
                             <FinanceOverview />
                         </Box>
-                        <Box>
+                        <Box sx={{ mb: 3 }}>
                             <RecentTransactionsList />
                         </Box>
                     </Grid>
 
                     {/* Right Column - 4/12 */}
                     <Grid size={{ xs: 12, md: 4 }}>
+                        <ExpenseCategories />
                         <QuickTransfer />
-                        <Goals />
+                        <SubscriptionManager />
+
                     </Grid>
                 </Grid>
 
